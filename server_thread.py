@@ -18,7 +18,7 @@ class ProcessTheClient(threading.Thread):
 			if data.startswith('TIME') and data.endswith('\r\n'):
         			timenow = time.strftime("%H:%M:%S")
         			response = f"JAM {timenow}\r\n"
-        			logging.warning(f"sending {response} to {self.address}")
+        			logging.warning(f"[Server] sending {response} to {self.address}")
 				self.connection.sendall(response.encode('utf-8'))
 			else:
 				break
