@@ -15,11 +15,11 @@ def kirim_data():
     try:
         # Send data
         message = 'TIME\r\n'
-        logging.warning(f"[CLIENT] sending {message}")
+        logging.warning(f"[Client] sending {message}")
         sock.sendall(message.encode('utf-8'))
         # Look for the response
         data = sock.recv(32)
-        logging.warning(f"[FROM SERVER] got {data}")
+        logging.warning(f"[Server] got {data}")
     finally:
         logging.warning("closing")
         sock.close()
