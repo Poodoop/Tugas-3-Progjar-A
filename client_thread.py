@@ -2,7 +2,7 @@ import sys
 import socket
 import logging
 import threading
-import time  # Import time
+import time 
 
 def kirim_data():
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -16,7 +16,7 @@ def kirim_data():
         # Send data
         message = 'TIME\r\n'
         logging.warning(f"[CLIENT] sending {message}")
-        sock.sendall(message.encode())
+        sock.sendall(message.encode('utf-8'))
         # Look for the response
         data = sock.recv(32)
         logging.warning(f"[FROM SERVER] got {data}")
