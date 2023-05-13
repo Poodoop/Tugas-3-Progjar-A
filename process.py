@@ -36,4 +36,4 @@ if __name__ == '__main__':
     while time.time() - start_time < 60:  
         process()
         process_counter += 1  
-    logging.warning(f"Total requests sent: {thread_counter}")
+    logging.warning(f"Total requests sent: {process_counter}")
