@@ -33,7 +33,7 @@ def thread():
 if __name__ == '__main__':
     thread_counter = 0 
     start_time = time.time()  
-    while time.time() - start_time < 30:  
+    while time.time() - start_time < 60:  
         thread()
         thread_counter += 1  
-    logging.warning(f"Total threads created: {thread_counter}")
+    logging.warning(f"Total requests sent: {thread_counter}")
