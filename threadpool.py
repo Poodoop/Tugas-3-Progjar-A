@@ -26,15 +26,21 @@ def kirim_data():
         sock.close()
     return
 
-def thread():
-    t = threading.Thread(target=kirim_data)
-    t.start()
-    t.join()
-
 if __name__ == '__main__':
-    thread_counter = 0 
-    start_time = time.time()  
-    while time.time() - start_time < 30:  
-        thread()
-        thread_counter += 1  
-    logging.warning(f"Total requests sent: {thread_counter}")
+    with ThreadPoolExecutor() as executor:
+        start_time = time.time() 
+        request_counter = 0  
+        futures = set()  
+
+        while time.time() - start_time < 60:  
+            future = executor.submit(kirim_data)
+            futures.add(future)
+
+            completed_futures = {f for f in futures if f.done()}
+            request_counter += len(completed_futures)
+            futures -= completed_futures
+
+        for future in futures:
+            future.result()
+
+        logging.warning(f"Total requests sent: {request_counter}")
