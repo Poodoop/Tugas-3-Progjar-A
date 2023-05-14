@@ -20,7 +20,7 @@ class ProcessTheClient(threading.Thread):
                 logging.warning(
                     f"[Server] received {data}")
 
-                if data.startswith('TIME') and data.endswith('\r\n'):
+                if data.startswith(b'TIME') and data.endswith(b'\r\n'):
                     current_time = time.strftime("%H:%M:%S")
                     response = f"JAM {current_time}\r\n"
                     logging.warning(
